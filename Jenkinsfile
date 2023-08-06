@@ -1,7 +1,7 @@
 pipeline {
   agent any 
 
-  tool {
+  tools {
     // jdk ''
     maven '3.9.4'
   }
