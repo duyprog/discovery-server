@@ -12,9 +12,9 @@ pipeline {
     string(name: 'GIT_REPO_URL', defaultValue: 'https://gitlab.com/duy-prog/discovery-server.git', description: 'Github repo to clone')
   }
 
-  environment {
+  // environment {
 
-  }
+  // }
 
   stages {
     // stage("Check environment") {
