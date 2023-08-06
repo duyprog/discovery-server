@@ -39,6 +39,8 @@ pipeline {
     stage("Build Application") {
       steps {
         sh "mvn package -DskipTests"
+        sh "pwd"
+        sh "ls"
       }
     }
 
