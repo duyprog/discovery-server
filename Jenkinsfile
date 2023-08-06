@@ -2,7 +2,6 @@ pipeline {
   agent any 
 
   tools {
-    docker 'latest'
     maven '3.9.4'
   }
 
