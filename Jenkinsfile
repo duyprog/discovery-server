@@ -58,10 +58,10 @@ pipeline {
     //     sh "docker rmi $DOCKER_REGISTRY:$IMAGE_TAG"
     //   }
     // }
+  }
   post {
     always {
       deleteDir()
     }
-  }
-  }
+  }  
 }
