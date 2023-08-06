@@ -6,8 +6,8 @@ pipeline {
   }
 
   parameters {
-    // string(name: 'DOCKER_REGISTRY', defaultValue: '', description: 'URI of ECR repository')
-    // string(name: 'IMAGE_TAG', defaultValue: 'develop', description: 'Tag of Docker Image')
+    string(name: 'DOCKER_REGISTRY', defaultValue: 'test', description: 'URI of ECR repository')
+    string(name: 'IMAGE_TAG', defaultValue: 'test', description: 'Tag of Docker Image')
     string(name: 'BRANCH_NAME', defaultValue: 'develop', description: 'Branch name of git repo')
     string(name: 'GIT_REPO_URL', defaultValue: 'https://gitlab.com/duy-prog/discovery-server.git', description: 'Github repo to clone')
   }
@@ -57,11 +57,11 @@ pipeline {
     //   }
     // }
 
-    // stage("Cleaning up") {
-    //   steps {
-    //     sh "docker rmi $DOCKER_REGISTRY:$IMAGE_TAG"
-    //   }
-    // }
+    stage("Cleaning up") {
+      steps {
+        sh "docker rmi $DOCKER_REGISTRY:$IMAGE_TAG"
+      }
+    }
   }
   post {
     always {
