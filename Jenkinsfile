@@ -2,7 +2,7 @@ pipeline {
   agent any 
 
   tools {
-    // jdk ''
+    docker 'latest'
     maven '3.9.4'
   }
 
@@ -20,9 +20,9 @@ pipeline {
   stages {
     stage("Check environment") {
       steps {
-        // sh 'java -version'
+        sh 'java -version'
         sh 'mvn --version'
-        // sh 'docker --version'
+        sh 'docker --version'
       }
     }
 
