@@ -1,10 +1,10 @@
 pipeline {
   agent any 
 
-  // tool {
-  //   jdk ''
-  //   maven ''
-  // }
+  tool {
+    // jdk ''
+    maven '3.9.4'
+  }
 
   parameters {
     // string(name: 'DOCKER_REGISTRY', defaultValue: '', description: 'URI of ECR repository')
@@ -18,13 +18,13 @@ pipeline {
   // }
 
   stages {
-    // stage("Check environment") {
-    //   steps {
-    //     sh 'java -version'
-    //     sh 'mvn --version'
-    //     sh 'docker --version'
-    //   }
-    // }
+    stage("Check environment") {
+      steps {
+        // sh 'java -version'
+        sh 'mvn --version'
+        // sh 'docker --version'
+      }
+    }
 
     stage("Checkout Source Code") {
       steps {
