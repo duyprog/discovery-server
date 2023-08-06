@@ -45,7 +45,7 @@ pipeline {
     }
 
     stage("Build Docker Image") {
-      step {
+      steps {
         sh "docker build . -t $DOCKER_REGISTRY:$IMAGE_TAG"
       }
     }
