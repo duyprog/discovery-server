@@ -37,11 +37,11 @@ pipeline {
       }
     }
 
-    // stage("Build Application") {
-    //   steps {
-    //     sh "mvn package -DskipTests"
-    //   }
-    // }
+    stage("Build Application") {
+      steps {
+        sh "mvn package -DskipTests"
+      }
+    }
 
     // stage("Build Docker Image") {
     //   step {
