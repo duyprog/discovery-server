@@ -17,13 +17,13 @@ pipeline {
   }
 
   stages {
-    stage("Check environment") {
-      steps {
-        sh 'java -version'
-        sh 'mvn --version'
-        sh 'docker --version'
-      }
-    }
+    // stage("Check environment") {
+    //   steps {
+    //     sh 'java -version'
+    //     sh 'mvn --version'
+    //     sh 'docker --version'
+    //   }
+    // }
 
     stage("Checkout Source Code") {
       steps {
