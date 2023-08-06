@@ -44,11 +44,11 @@ pipeline {
       }
     }
 
-    // stage("Build Docker Image") {
-    //   step {
-    //     sh "docker build . -t $DOCKER_REGISTRY:$IMAGE_TAG"
-    //   }
-    // }
+    stage("Build Docker Image") {
+      step {
+        sh "docker build . -t $DOCKER_REGISTRY:$IMAGE_TAG"
+      }
+    }
 
     // stage("Push Docker Image") {
     //   steps {

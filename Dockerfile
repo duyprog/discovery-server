@@ -1,4 +1,4 @@
-FROM arm64v8/openjdk
+FROM openjdk:17
 
 # Add user 
 
