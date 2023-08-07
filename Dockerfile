@@ -4,7 +4,8 @@ FROM openjdk:17
 
 WORKDIR /home/microservices-example
 
-VOLUME /tmp
+VOLUME /tmp 
+CMD [ "ls" ]
 
 # ADD entrypoint.sh entrypoint.sh
 
