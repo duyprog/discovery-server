@@ -46,16 +46,16 @@ pipeline {
 
     stage("Build Docker Image") {
       steps {
-        sh "docker build . -t $DOCKER_REGISTRY:$IMAGE_TAG"
+        sh "docker build --no-cache -t $DOCKER_REGISTRY:$IMAGE_TAG" .
       }
     }
 
-    // stage("Push Docker Image") {
-    //   steps {
-    //     sh "docker login --username ${ECR_CREDENTIAL_USR} -p ${ECR_CREDENTIAL_PWS}"
-    //     sh "docker push $DOCKER_REGISTRY:$IMAGE_TAG"
-    //   }
-    // }
+    stage("Push Docker Image") {
+      steps {
+        sh "aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 099608707772.dkr.ecr.ap-southeast-1.amazonaws.com"  
+        sh "docker push $DOCKER_REGISTRY:$IMAGE_TAG"
+      }
+    }
 
     stage("Cleaning up") {
       steps {
