@@ -52,8 +52,15 @@ pipeline {
 
     stage("Push Docker Image") {
       steps {
-        sh "aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 099608707772.dkr.ecr.ap-southeast-1.amazonaws.com"  
-        sh "docker push $DOCKER_REGISTRY:$IMAGE_TAG"
+        withCredentials([[
+          $class: 'AmazonWebServicesCredentialsBinding',
+          credentialsId: "aws-duypk5",
+          accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+          secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'    
+        ]]){
+          sh "aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 099608707772.dkr.ecr.ap-southeast-1.amazonaws.com"  
+          sh "docker push $DOCKER_REGISTRY:$IMAGE_TAG"
+        }
       }
     }
 
