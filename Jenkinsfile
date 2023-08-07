@@ -6,7 +6,7 @@ pipeline {
   }
 
   parameters {
-    string(name: 'DOCKER_REGISTRY', defaultValue: 'test', description: 'URI of ECR repository')
+    string(name: 'DOCKER_REGISTRY', defaultValue: '099608707772.dkr.ecr.ap-southeast-1.amazonaws.com/discovery-server', description: 'URI of ECR repository')
     string(name: 'IMAGE_TAG', defaultValue: 'test', description: 'Tag of Docker Image')
     string(name: 'BRANCH_NAME', defaultValue: 'develop', description: 'Branch name of git repo')
     string(name: 'GIT_REPO_URL', defaultValue: 'https://gitlab.com/duy-prog/discovery-server.git', description: 'Github repo to clone')
