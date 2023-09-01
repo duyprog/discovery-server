@@ -7,9 +7,9 @@ pipeline {
 
   parameters {
     string(name: 'DOCKER_REGISTRY', defaultValue: '099608707772.dkr.ecr.ap-southeast-1.amazonaws.com/discovery-server', description: 'URI of ECR repository')
-    string(name: 'IMAGE_TAG', defaultValue: 'test', description: 'Tag of Docker Image')
     string(name: 'BRANCH_NAME', defaultValue: 'develop', description: 'Branch name of git repo')
     string(name: 'GIT_REPO_URL', defaultValue: 'https://gitlab.com/duy-prog/discovery-server.git', description: 'Github repo to clone')
+    string(name: "APP_VERSION", description: "Version of application")
   }
 
   // environment {
@@ -46,7 +46,7 @@ pipeline {
 
     stage("Build Docker Image") {
       steps {
-        sh "docker build --no-cache -t $DOCKER_REGISTRY:$IMAGE_TAG ."
+        sh "docker build --no-cache -t $DOCKER_REGISTRY:$APP_VERSION ."
       }
     }
 
@@ -59,14 +59,14 @@ pipeline {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'    
         ]]){
           sh "aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 099608707772.dkr.ecr.ap-southeast-1.amazonaws.com"  
-          sh "docker push $DOCKER_REGISTRY:$IMAGE_TAG"
+          sh "docker push $DOCKER_REGISTRY:$APP_VERSION"
         }
       }
     }
 
     stage("Cleaning up") {
       steps {
-        sh "docker rmi $DOCKER_REGISTRY:$IMAGE_TAG"
+        sh "docker rmi $DOCKER_REGISTRY:$APP_VERSION"
       }
     }
   }
