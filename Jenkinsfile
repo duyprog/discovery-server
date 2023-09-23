@@ -38,7 +38,7 @@ pipeline {
 
     stage("SonarQube Scan"){
       steps {
-        withSonarQubeEnv(installationName: sq1){
+        withSonarQubeEnv(installationName: 'sq1'){
           sh "mvn clean verify sonar:sonar -Dsonar.projectKey=discovery-server -Dsonar.projectName='discovery-server'"
         }
       }
