@@ -36,6 +36,14 @@ pipeline {
       }
     }
 
+    stage("SonarQube Scan"){
+      steps {
+        withSonarQubeEnv(installationName: sq1){
+          sh 'mvn sonar:sonar'
+        }
+      }
+    }
+
     stage("Build Application") {
       steps {
         sh "mvn package -DskipTests"
