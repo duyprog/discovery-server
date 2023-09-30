@@ -61,7 +61,7 @@ pipeline {
     stage("Image Scan") {
       steps {
         sh "trivy image --format template --template ${TEMPLATE_PATH} /
-        --scanners vuln --no-progress --exit-code 0 --severity HIGH,CRITICAL/ 
+        --scanners vuln --no-progress --exit-code 0 --severity HIGH,CRITICAL / 
         --timeout 15m --output cve_report.html $DOCKER_REGISTRY:$APP_VERSION"
       }
     }
