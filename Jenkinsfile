@@ -13,7 +13,7 @@ pipeline {
   }
 
   environment {
-    TEMPLATE_PATH = "${WORKSPACE}html.tpl"
+    TEMPLATE_PATH = "@/var/lib/jenkins/workspace/html.tpl"
   }
 
   stages {
