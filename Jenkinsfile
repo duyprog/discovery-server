@@ -88,7 +88,7 @@ pipeline {
   }
   post {
     always {
-      archiveArtifact artifacts: "cve_report.html", fingerprint: true 
+      archiveArtifacts artifacts: "cve_report.html", fingerprint: true 
       publishHTML(target: [
         allowMissing: false, 
         alwaysLinkToLastBuild: false, 
