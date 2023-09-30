@@ -60,7 +60,7 @@ pipeline {
 
     stage("Image Scan") {
       steps {
-        sh "trivy --exit-code 1 --severity HIGH,CRITICAL $DOCKER_REGISTRY:$APP_VERSION"
+        sh "trivy image --exit-code 1 --severity HIGH,CRITICAL $DOCKER_REGISTRY:$APP_VERSION"
       }
     }
 
