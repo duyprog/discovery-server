@@ -13,7 +13,7 @@ pipeline {
   }
 
   environment {
-    TEMPLATE_PATH = "\@"/home/jenkins-admin/trivy_template/html.tpl\""
+    TEMPLATE_PATH = "/home/jenkins-admin/trivy_template/html.tpl"
   }
 
   stages {
