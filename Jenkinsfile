@@ -12,9 +12,9 @@ pipeline {
     string(name: 'APP_VERSION', description: 'Version of application')
   }
 
-  // environment {
-
-  // }
+  environment {
+    TEMPLATE_PATH = "\@"/home/jenkins-admin/trivy_template/html.tpl\""
+  }
 
   stages {
     stage("Check environment") {
@@ -60,7 +60,9 @@ pipeline {
 
     stage("Image Scan") {
       steps {
-        sh "trivy image --scanners vuln --no-progress --exit-code 0 --severity HIGH,CRITICAL --timeout 15m $DOCKER_REGISTRY:$APP_VERSION"
+        sh "trivy image --format template --template ${TEMPLATE_PATH} /
+        --scanners vuln --no-progress --exit-code 0 --severity HIGH,CRITICAL/ 
+        --timeout 15m --output cve_report.html $DOCKER_REGISTRY:$APP_VERSION"
       }
     }
 
@@ -86,6 +88,15 @@ pipeline {
   }
   post {
     always {
+      archiveArtifact artifacts: "cve_report.html", fingerprint: true 
+      publishHTML(target: [
+        allowMissing: false, 
+        alwaysLinkToLastBuild: false, 
+        keepAll: true, 
+        reportDir: '.',
+        reportFiles: 'cve_report.html',
+        reportName: 'Trivy CVE Report'
+      ])
       deleteDir()
     }
   }  
