@@ -58,6 +58,12 @@ pipeline {
       }
     }
 
+    stage("Image Scan") {
+      steps {
+        sh "trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL $DOCKER_REGISTRY:$APP_VERSION"
+      }
+    }
+
     stage("Push Docker Image") {
       steps {
         withCredentials([[
