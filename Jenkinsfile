@@ -80,7 +80,7 @@ pipeline {
 
     stage("Cleaning up") {
       steps {
-        sh "docker rmi $DOCKER_REGISTRY:$APP_VERSION"
+        sh "docker rmi -f $DOCKER_REGISTRY:$APP_VERSION"
       }
     }
   }
