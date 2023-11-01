@@ -1,0 +1,19 @@
+name: build-discover-server
+on: [push]
+jobs: 
+  check-environment: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 
+      - name: Set up JDK 17 for x64 
+        use: actions/setup-java@v3
+        with: 
+          distribution: oracle
+          java-version: 17
+          architecture: x64
+      - name: Check Maven version 
+        run: mvn --version
+      - name: Check Docker version
+        run: docker --version 
+      - name: Check Java version 
+        run: java --version 
