@@ -1,7 +1,10 @@
 name: build-discover-server
 on: [push]
+env: 
+  DOCKER_REGISTRY: test
+  APP_VERSION: latest
 jobs: 
-  check-environment: 
+  build-java-app: 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4 
@@ -11,3 +14,7 @@ jobs:
           distribution: oracle
           java-version: 17
           architecture: x64 
+      - name: Build application
+        run: mvn package -DskipTests
+      - name: Build Docker image
+        run: docker build --no-cache -t $DOCKER_REGISTRY:$APP_VERSION . 
