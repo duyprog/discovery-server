@@ -16,7 +16,7 @@ jobs:
         with: 
           distribution: oracle
           java-version: 17
-          architecture: x64 
+          architecture: x64  
       - name: Build application
         run: mvn package -DskipTests 
       - name: Config AWS Credentials
