@@ -3,6 +3,8 @@ on: [push]
 env: 
   DOCKER_REGISTRY: test
   APP_VERSION: latest
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  AWS_ROLE: ${{ secrets.AWS_ASSUME_ROLE_NAME }}
 jobs: 
   build-java-app: 
     runs-on: ubuntu-latest
@@ -18,3 +20,9 @@ jobs:
         run: mvn package -DskipTests
       - name: Build Docker image
         run: docker build --no-cache -t $DOCKER_REGISTRY:$APP_VERSION . 
+      - name: Config AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with: 
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.AWS_ROLE }}
+          aws-region: ap-southeast-1
+        
