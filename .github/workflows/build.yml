@@ -17,7 +17,7 @@ jobs:
           java-version: 17
           architecture: x64 
       - name: Build application
-        run: mvn package -DskipTests
+        run: mvn package -DskipTests 
       - name: Build Docker image
         run: docker build --no-cache -t $DOCKER_REGISTRY:$APP_VERSION . 
       - name: Config AWS Credentials
