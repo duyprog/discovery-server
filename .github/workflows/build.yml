@@ -1,5 +1,7 @@
 name: build-discover-server
 on: [push]
+permissions: 
+  id-token: write
 env: 
   DOCKER_REGISTRY: test
   APP_VERSION: latest
