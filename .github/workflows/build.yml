@@ -35,4 +35,13 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG  
+      - name: Run trivy scaning 
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+          trivy image --severity HIGH,CRITICAL --format sarif -o trivy-results.sarif $REGISTRY/$REPOSITORY:$IMAGE_TAG
+        env: 
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: ${{ env.AWS_ECR_REPOSITORY }}    
+      - name: Detail Trivy scan results 
+        run: cat ./trivy-results.sarif              
         
