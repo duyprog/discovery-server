@@ -4,7 +4,7 @@ permissions:
   id-token: write
 env: 
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-  AWS_ROLE: ${{ secrets.AWS_ASSUME_ROLE_NAME }}
+  AWS_ROLE: ${{ secrets.AWS_ASSUME_ROLE_NAME }} 
   AWS_ECR_REPOSITORY: discovery-server
 jobs: 
   build-java-app: 
