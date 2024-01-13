@@ -2,6 +2,9 @@ name: build-discover-server
 on: [push]
 permissions: 
   id-token: write
+  contents: read
+  actions: read
+  security-events: write
 env: 
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
   AWS_ROLE: ${{ secrets.AWS_ASSUME_ROLE_NAME }} 
