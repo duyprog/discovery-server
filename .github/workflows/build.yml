@@ -1,5 +1,8 @@
 name: build-discover-server
-on: [push]
+on: 
+  push: 
+    paths: .github/workflows/build.yml
+
 permissions: 
   id-token: write
   contents: read
